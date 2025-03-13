@@ -1,15 +1,19 @@
 import {View, Text, StyleSheet, Image, Dimensions} from 'react-native';
 import React from 'react';
 import Onboarding from 'react-native-onboarding-swiper';
+import { useRouter } from 'expo-router';
 
 const {width, height} = Dimensions.get('window')
 
 export default function OnBoardingScreen() {
+    const router = useRouter();
     return (
         <>
             <View style={styles.container}>
                 <Onboarding 
                     containerStyles={{paddingHorizontal: 20}}
+                    onDone={() => router.push('/account')}
+                    onSkip={() => router.push('/account')}
                     pages={[
                         {
                             backgroundColor: '#fff',
@@ -39,7 +43,7 @@ export default function OnBoardingScreen() {
                                 </View>
                             ),
                             title: 'Coûts de transport de vos biens optimisés',
-                            subtitle: '',
+                            subtitle: 'Appuyez sur "Terminé" pour continuer.',
                         },
                     ]}
                 />
