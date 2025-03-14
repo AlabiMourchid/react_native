@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, TouchableOpacity, Alert, StyleSheet, Linking } from "react-native";
+import { View, Text, TextInput, TouchableOpacity, Alert, StyleSheet, Linking, Image } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [passwordVisible, setPasswordVisible] = useState(false); 
+  const [passwordVisible, setPasswordVisible] = useState(false);
 
   const handleLogin = () => {
     Alert.alert("Connexion réussie");
@@ -28,10 +28,10 @@ const Login = () => {
 
   return (
     <View style={styles.container}>
-    <TouchableOpacity style={styles.languageButton} onPress={handleLanguageChange}>
-      <Text style={styles.languageButtonText}>EN/FR</Text>
-    </TouchableOpacity>
-  
+      <TouchableOpacity style={styles.languageButton} onPress={handleLanguageChange}>
+        <Text style={styles.languageButtonText}>Français</Text>
+      </TouchableOpacity>
+
       <Text style={styles.title}>Content de vous revoir!</Text>
       <Text style={styles.subtitle}>
         Veuillez renseigner vos informations d'identification afin d'accéder à la plateforme.
@@ -40,27 +40,32 @@ const Login = () => {
       <View style={styles.inputContainer}>
         <FontAwesome name="envelope" size={20} color="#666" style={styles.icon} />
         <TextInput
-          style={styles.input} placeholder="Adresse email" keyboardType="email-address" value={email}  onChangeText={setEmail} />
+          style={styles.input}
+          placeholder="Adresse email"
+          keyboardType="email-address"
+          value={email}
+          onChangeText={setEmail}
+        />
       </View>
 
       <View style={styles.inputContainer}>
-  <FontAwesome name="lock" size={20} color="#666" style={styles.icon} />
-  <TextInput
-    style={styles.input}
-    placeholder="Mot de passe"
-    secureTextEntry={!passwordVisible} 
-    value={password}
-    onChangeText={setPassword}
-  />
-  <TouchableOpacity onPress={() => setPasswordVisible(!passwordVisible)}>
-    <FontAwesome
-      name={passwordVisible ? "eye" : "eye-slash"} 
-      size={20}
-      color="#666"
-      style={styles.eyeIcon} 
-    />
-  </TouchableOpacity>
-</View>
+        <FontAwesome name="lock" size={20} color="#666" style={styles.icon} />
+        <TextInput
+          style={styles.input}
+          placeholder="Mot de passe"
+          secureTextEntry={!passwordVisible}
+          value={password}
+          onChangeText={setPassword}
+        />
+        <TouchableOpacity onPress={() => setPasswordVisible(!passwordVisible)}>
+          <FontAwesome
+            name={passwordVisible ? "eye" : "eye-slash"}
+            size={20}
+            color="#666"
+            style={styles.eyeIcon}
+          />
+        </TouchableOpacity>
+      </View>
 
       <TouchableOpacity onPress={handleForgotPassword}>
         <Text style={styles.forgotPassword}>Mot de passe oublié ?</Text>
@@ -80,111 +85,117 @@ const Login = () => {
       <TouchableOpacity onPress={handleSignUp} style={[styles.button, styles.signUpButton]}>
         <Text style={[styles.buttonText, { color: "orange" }]}>Creer un compte</Text>
       </TouchableOpacity>
-    </View>
 
-    
-    
+      <View style={styles.logo}>
+        <Image source={require('../assets/images/logo.png')} />
+      </View>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1, 
-    justifyContent: "center", 
+    flex: 1,
+    padding: 20,
+    backgroundColor: "white",
+    justifyContent: "center",
     alignItems: "center",
-    padding: 20 },
+  },
 
-   
-      eyeIcon: {
-        padding: 10, 
-      },
+  logo: {
+    
+  },
 
-       
-        languageButton: {
-          position: "absolute",
-          top: 20,
-          right: 20,
-          paddingHorizontal: 10,
-          paddingVertical: 5,
-          borderWidth: 1,
-          borderColor: "#333", 
-          borderRadius: 5,
-        },
-        languageButtonText: {
-          fontSize: 14,
-          color: "#333", 
-        },
+  eyeIcon: {
+    padding: 10,
+  },
 
-  title: { 
+  languageButton: {
+    position: "absolute",
+    top: 30,
+    right: 20,
+    borderWidth: 1,
+    borderRadius: 5,
+    borderColor: "#333",
+    paddingVertical: 5,
+    paddingHorizontal: 20,
+  },
+
+  languageButtonText: {
+    fontSize: 12,
+    color: "#333",
+  },
+
+  title: {
     fontSize: 28,
+    marginBottom: 5,
     fontWeight: "bold",
-    marginBottom: 10,
-    textAlign: "center" 
-      },
+  },
 
   subtitle: {
-    fontSize: 16, 
-    textAlign: "center",
-    marginBottom: 20 
+    fontSize: 14,
+    marginBottom: 20,
   },
 
   inputContainer: {
-    flexDirection: "row",
-    alignItems: "center",
     width: "100%",
     borderWidth: 1,
     borderRadius: 8,
-    paddingHorizontal: 10,
     marginBottom: 10,
     borderColor: "#ccc",
+    flexDirection: "row",
+    alignItems: "center",
+    paddingHorizontal: 10,
   },
+
   icon: {
-    marginRight: 10 
-    },
+    marginRight: 10,
+  },
 
   input: {
     flex: 1,
-    padding: 12 
-    },
+    padding: 12,
+  },
 
   button: {
-    backgroundColor: "orange", 
     padding: 12,
-    borderRadius: 8, 
     width: "100%",
+    borderRadius: 8,
     alignItems: "center",
-    marginVertical: 5 
-    },
-
-  buttonText: { 
-    color: "white", 
-    fontSize: 16 
+    backgroundColor: "orange",
   },
-  
-  forgotPassword: { 
-    alignSelf: "flex-end",
+
+  buttonText: {
+    color: "white",
+    fontSize: 14,
+  },
+
+  forgotPassword: {
+    left: 85,
     color: "black",
-    marginBottom: 10,
+    marginBottom: 20,
     fontWeight: "bold",
-    textDecorationLine: "underline"
   },
 
   linkText: {
-    color: "orange", 
-    textDecorationLine: "underline" 
-    },
+    color: "orange",
+    marginTop: 20,
+    textDecorationLine: "underline",
+  },
 
   termsText: {
-    fontSize: 14, 
-    textAlign: "center", 
-    marginTop: 10, 
-    color: "#555" 
-    },
+    fontSize: 12,
+    marginTop: 10,
+    marginBottom: 20,
+    color: "#555",
+    textAlign: "center",
+  },
 
   signUpButton: {
+    borderWidth: 1,
+    borderColor: "orange",
     backgroundColor: "white",
-    borderWidth: 1, 
-    borderColor: "orange" },
+  },
 });
 
 export default Login;
