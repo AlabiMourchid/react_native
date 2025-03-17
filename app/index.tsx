@@ -3,13 +3,16 @@ import { View, Text, Image, TouchableOpacity, ScrollView, Dimensions, StyleSheet
 import { useNavigation } from "@react-navigation/native";
 import { Button } from "react-native-paper";
 import PagerView from "react-native-pager-view";
+import TranslateComponent from "./translate";
+import { useRouter } from "expo-router";
 
 const { width, height } = Dimensions.get("window");
 
-const OnboardingPage = () => {
-  const navigation = useNavigation();
+
+export default function OnboardingPage() {
   const [currentPage, setCurrentPage] = useState(0);
   const pagerRef = useRef(null);
+  const router = useRouter();
 
   const pages = [
     {
@@ -29,9 +32,8 @@ const OnboardingPage = () => {
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1, padding: 20 }}>
       <View style={{ flex: 1, justifyContent: "space-around" }}>
-        <View style={{ alignItems: "flex-end" }}>
-          
-        </View>
+        
+        <TranslateComponent />
         
         <PagerView
           ref={pagerRef}
@@ -78,13 +80,14 @@ const OnboardingPage = () => {
           </Button>
           <View style={styles.button} />
           <TouchableOpacity>
-            <Text style={{ textAlign: "center", color: "blue" }}>En continuant vous acceptez les conditions générales d’utilisation</Text>
+            <Text style={{ textAlign: "center", color: "#FF6A00" }}>En continuant vous acceptez les conditions générales d’utilisation</Text>
           </TouchableOpacity>
         </View>
       </View>
     </ScrollView>
   );
 };
+
 
 const styles = StyleSheet.create({
   container: {
@@ -96,7 +99,7 @@ const styles = StyleSheet.create({
   onboarding: {
     width: 215,
     height: 215,
-    backgroundColor: "rgba(0, 123, 255, 0.1)",
+    backgroundColor: "rgba(255, 106, 0, .1)",
     borderRadius: 200,
     justifyContent: "center",
     alignItems: "center",
@@ -119,5 +122,3 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
   },
 });
-
-export default OnboardingPage;
