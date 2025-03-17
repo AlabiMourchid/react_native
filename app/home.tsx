@@ -483,13 +483,13 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
   scrollContent: {
-    padding: 16,
+    paddingHorizontal: 16,
   },
   redFrame: {
     backgroundColor: 'rgba(255, 0, 0, 0.15)', 
     borderRadius: 8,
     padding: 16,
-    marginBottom: 8,
+    marginBottom: 16,
   },
   boldText: {
     fontWeight: 'bold',
