@@ -35,14 +35,15 @@ export default function OnboardingPage() {
         
         <TranslateComponent />
         
+        <View style={{height: 30}} />
         <PagerView
           ref={pagerRef}
-          style={{ height: height * 0.5 }}
+          style={{ height: height * 0.5, marginTop: 50, marginBottom: 10 }}
           initialPage={0}
           onPageSelected={(e) => setCurrentPage(e.nativeEvent.position)}
         >
           {pages.map((page, index) => (
-            <View key={index} style={{ alignItems: "center" }}>
+            <View key={index} style={{ alignItems: "center", justifyContent: 'center' }}>
               <View
                 style={styles.onboarding}
               >
@@ -70,12 +71,14 @@ export default function OnboardingPage() {
           ))}
         </View>
         
+        <View style={styles.button} />
         <View>
-          <Button mode="contained">
+          <Button mode="contained" style={{backgroundColor: "#FF6A00", borderRadius: 5}}>
             Créer un compte
           </Button>
           <View style={styles.button} />
-          <Button mode="outlined" > 
+          <Button mode="outlined" onPress={() => router.push('/login')}
+           textColor="#FF6A00" style={{borderColor: "#FF6A00", borderRadius: 5}}> 
             Se connecter
           </Button>
           <View style={styles.button} />
@@ -105,14 +108,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   image : {
-    width: 150, 
-    height: 150
+    width: 100, 
+    height: 100
   },
   button : {
     height:30,
   },
   text : {
-    fontSize: 20, 
+    fontSize: 25, 
     fontWeight: "bold", 
     textAlign: "center", 
     marginTop: 20 

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, Alert, StyleSheet, Linking, Image } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import TranslateComponent from "./translate";
+import { router } from "expo-router";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -14,11 +15,13 @@ const Login = () => {
     <View style={styles.container}>
       <TranslateComponent />
 
-      <Text style={styles.title}>Content de vous revoir!</Text>
+      <Text style={styles.title}>Content de vous revoir !</Text>
+      <View style={{height: 20}} />
       <Text style={styles.subtitle}>
         Veuillez renseigner vos informations d'identification afin d'accéder à la plateforme.
       </Text>
 
+      <Text style={{fontSize: 15, marginBottom: 10}}>E-mail</Text>
       <View style={styles.inputContainer}>
         <FontAwesome name="envelope" size={20} color="#666" style={styles.icon} />
         <TextInput
@@ -30,6 +33,7 @@ const Login = () => {
         />
       </View>
 
+      <Text style={{fontSize: 15, marginBottom: 10}}>Mot de passe</Text>
       <View style={styles.inputContainer}>
         <FontAwesome name="lock" size={20} color="#666" style={styles.icon} />
         <TextInput
@@ -49,7 +53,7 @@ const Login = () => {
         </TouchableOpacity>
       </View>
 
-      <TouchableOpacity>
+      <TouchableOpacity style={{justifyContent: 'space-between'}}>
         <Text style={styles.forgotPassword}>Mot de passe oublié ?</Text>
       </TouchableOpacity>
 
@@ -64,13 +68,9 @@ const Login = () => {
         </Text>
       </Text>
 
-      <TouchableOpacity style={[styles.button, styles.signUpButton]}>
+      <TouchableOpacity style={[styles.button, styles.signUpButton]} onPress={()=> router.push('/home')}>
         <Text style={[styles.buttonText, { color: "#FF6A00" }]}>Creer un compte</Text>
       </TouchableOpacity>
-
-      <View style={styles.logo}>
-        <Image source={require('../assets/images/logo_icon_primary.png')} />
-      </View>
     </View>
   );
 };
@@ -79,9 +79,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    backgroundColor: "white",
+    marginTop:40,
     justifyContent: "center",
-    alignItems: "center",
+    alignItems: "flex-start",
   },
 
   logo: {
@@ -102,18 +102,21 @@ const styles = StyleSheet.create({
 
   subtitle: {
     fontSize: 14,
+    lineHeight: 25,
     marginBottom: 20,
+    color: "grey",
   },
 
   inputContainer: {
     width: "100%",
     borderWidth: 1,
     borderRadius: 8,
-    marginBottom: 10,
+    marginBottom: 15,
     borderColor: "#ccc",
     flexDirection: "row",
     alignItems: "center",
     paddingHorizontal: 10,
+    paddingVertical: 5
   },
 
   icon: {
@@ -131,6 +134,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     alignItems: "center",
     backgroundColor: "#FF6A00",
+    marginBottom: 20
   },
 
   buttonText: {
@@ -139,10 +143,10 @@ const styles = StyleSheet.create({
   },
 
   forgotPassword: {
-    left: 85,
     color: "black",
     marginBottom: 20,
     fontWeight: "bold",
+    left: 170
   },
 
   linkText: {
@@ -154,7 +158,7 @@ const styles = StyleSheet.create({
   termsText: {
     fontSize: 12,
     marginTop: 10,
-    marginBottom: 20,
+    marginBottom: 30,
     color: "grey",
     textAlign: "center",
   },
