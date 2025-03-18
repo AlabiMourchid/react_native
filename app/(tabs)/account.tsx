@@ -1,15 +1,20 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView } from 'react-native';
 import { MaterialIcons, FontAwesome5, Entypo, AntDesign } from '@expo/vector-icons';
+import { Appbar } from 'react-native-paper';
 
 export default function AccountScreen() {
   return (
     <View style={styles.container}>
+      <Appbar.Header style={{backgroundColor: "#f8f9fa"}}>
+        <Appbar.Content title="Mon compte" />
+        <Appbar.Action icon="pencil" onPress={() => {}} />
+      </Appbar.Header>
       < ScrollView contentContainerStyle={styles.scrollContent}>
         <View style={styles.profileSection}>
           <View style={styles.avatarContainer}>
             <Image
-              source={require('../assets/images/avatar.png')}
+              source={require('../../assets/images/avatar.png')}
               style={styles.avatar}
             />
           </View>
@@ -68,20 +73,6 @@ export default function AccountScreen() {
         </View>
       </ScrollView>
 
-      <View style={styles.bottomNav}>
-        <TouchableOpacity style={styles.navItem}>
-          <MaterialIcons name="home" size={28} color="#6c757d" />
-          <Text style={styles.navText}>Accueil</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.navItem}>
-          <FontAwesome5 name="clipboard-list" size={28} color="#6c757d" />
-          <Text style={styles.navText}>Locations</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={[styles.navItem, styles.activeNavItem]}>
-          <MaterialIcons name="person" size={28} color="#FF6A00" />
-          <Text style={[styles.navText, { color: '#FF6A00' }]}>Compte</Text>
-        </TouchableOpacity>
-      </View>
     </View>
   );
 }

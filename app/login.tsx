@@ -68,7 +68,7 @@ const Login = () => {
         </Text>
       </Text>
 
-      <TouchableOpacity style={[styles.button, styles.signUpButton]} onPress={()=> router.push('/home')}>
+      <TouchableOpacity style={[styles.button, styles.signUpButton]} onPress={()=> router.push('/account')}>
         <Text style={[styles.buttonText, { color: "#FF6A00" }]}>Creer un compte</Text>
       </TouchableOpacity>
     </View>

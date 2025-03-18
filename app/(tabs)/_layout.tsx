@@ -1,6 +1,5 @@
 import { FontAwesome } from '@expo/vector-icons';
 import { Tabs } from 'expo-router';
-import { Text, View } from 'react-native';
 
 export default function Home() {
   return (
@@ -8,18 +7,18 @@ export default function Home() {
       <Tabs.Screen
         name="home"
         options={{
-          tabBarLabel: 'Home',
+          tabBarLabel: 'Accuel',
           tabBarIcon: ({ color, size }) => (
             <FontAwesome name="home" size={size} color={color} />
           ),
         }}
       />
       <Tabs.Screen
-        name="account"
+        name='account'
         options={{
-          tabBarLabel: 'Settings',
+          tabBarLabel: 'Compte',
           tabBarIcon: ({ color, size }) => (
-            <FontAwesome name="cog" size={size} color={color} />
+            <FontAwesome name="user" size={size} color={color} />
           ),
         }}
       />
