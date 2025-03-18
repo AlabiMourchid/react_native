@@ -83,7 +83,11 @@ export default function OnboardingPage() {
           </Button>
           <View style={styles.button} />
           <TouchableOpacity>
-            <Text style={{ textAlign: "center", color: "#FF6A00" }}>En continuant vous acceptez les conditions générales d’utilisation</Text>
+            <Text style={{ textAlign: "center", color: "grey" }}>
+              En continuant vous acceptez les
+              <Text style={{color: "#FF6A00" }}> conditions générales d’utilisation</Text>
+            </Text>
+            
           </TouchableOpacity>
         </View>
       </View>
