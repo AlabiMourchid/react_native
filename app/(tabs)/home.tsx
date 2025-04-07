@@ -1,16 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { View, Text, Image, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+import { AuthContext } from '../hooks/useAuth';
 
 const HomePage = () => {
 
   const [activeMenu, setActiveMenu] = React.useState('accueil') ;
+  const authContext = useContext(AuthContext);
 
   return (
     <View style={styles.container}>
-      {/* Barre en haut avec le nom de l'utilisateur et l'icône de notification */}
       <View style={styles.topBar}>
-        <Text style={styles.userName}>Bonjour Marthe !</Text>
+        <Text style={styles.userName}>Bonjour, {authContext?.user?.firstName ?? '-'} {authContext?.user?.lastName ?? '-'} !</Text>
         <View style={styles.notificationIcon}>
           <Image
             source={require('../../assets/images/notifications.png')} 
