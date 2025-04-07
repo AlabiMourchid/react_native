@@ -1,10 +1,11 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { View, Text, Image, TouchableOpacity, ScrollView, Dimensions, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Button } from "react-native-paper";
 import PagerView from "react-native-pager-view";
 import TranslateComponent from "./translate";
 import { useRouter } from "expo-router";
+import { getStoredUser } from "./services/auth";
 
 const { width, height } = Dimensions.get("window");
 
@@ -28,6 +29,8 @@ export default function OnboardingPage() {
       title: 'Coûts de transport de vos biens optimisés',
     },
   ];
+
+  
 
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1, padding: 20 }}>

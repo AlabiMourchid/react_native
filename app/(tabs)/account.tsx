@@ -1,9 +1,23 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView } from 'react-native';
 import { MaterialIcons, FontAwesome5, Entypo, AntDesign } from '@expo/vector-icons';
 import { Appbar } from 'react-native-paper';
+import { AuthContext } from '../hooks/useAuth';
+import { router } from 'expo-router';
 
 export default function AccountScreen() {
+
+  const handleLogout = async () => {
+    try {
+      await authContext?.logoutUser();
+      router.replace('/login');
+    }
+    catch(error){
+      console.error("Erreur lors de la connexion");
+    }
+  }
+  
+  const authContext = useContext(AuthContext);
   return (
     <View style={styles.container}>
       <Appbar.Header style={{backgroundColor: "#f8f9fa"}}>
@@ -18,9 +32,9 @@ export default function AccountScreen() {
               style={styles.avatar}
             />
           </View>
-          <Text style={styles.userName}>ELISHA Léandre</Text>
-          <Text style={styles.userEmail}>leandreelisha20@gmail.com</Text>
-          <Text style={styles.userLocation}>Bénin, Cotonou</Text>
+          <Text style={styles.userName}>{authContext?.user?.firstName ?? '-'} {authContext?.user?.lastName ?? '-'}</Text>
+          <Text style={styles.userEmail}>{authContext?.user?.email ?? '-'} </Text>
+          <Text style={styles.userLocation}>{authContext?.user?.country ?? '-'}, {authContext?.user?.address ?? '-'}</Text>
         </View>
 
         <Text style={styles.sectionTitle}>Paramètres</Text>
@@ -65,10 +79,9 @@ export default function AccountScreen() {
             <Text style={styles.settingText}>Service client</Text>
             <AntDesign name="right" size={20} color="#6c757d" />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.settingItem}>
-            <MaterialIcons name="logout" size={24} color="#6c757d" />
-            <Text style={styles.settingText}>Déconnexion</Text>
-            <AntDesign name="right" size={20} color="#6c757d" />
+          <TouchableOpacity style={styles.settingItem} onPress={handleLogout} >
+            <MaterialIcons name="logout" size={24} color="red" />
+            <Text style={styles.settingTextLogout}>Déconnexion</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
@@ -137,6 +150,13 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginLeft: 15,
     flex: 1,
+  },
+  
+  settingTextLogout: {
+    fontSize: 16,
+    marginLeft: 15,
+    flex: 1,
+    color : 'red'
   },
   bottomNav: {
     flexDirection: 'row',

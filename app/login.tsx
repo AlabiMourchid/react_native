@@ -1,17 +1,30 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, Alert, StyleSheet, Linking, Image } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import TranslateComponent from "./translate";
 import { router } from "expo-router";
+import { AuthContext } from "./hooks/useAuth";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordVisible, setPasswordVisible] = useState(false);
-
+  const authContext = useContext(AuthContext);
   
 
+  const handleLogin = async () => {
+    try {
+      await authContext?.loginUser(email, password);
+      Alert.alert('Connexion réussie !');
+      router.replace('/home');
+    } catch (error) { 
+      console.error("Erreur lors de la connexion");
+    }
+  };
+
+
   return (
+    
     <View style={styles.container}>
       <TranslateComponent />
 
@@ -29,6 +42,7 @@ const Login = () => {
           placeholder="Adresse email"
           keyboardType="email-address"
           value={email}
+          
           onChangeText={setEmail}
         />
       </View>
@@ -57,7 +71,7 @@ const Login = () => {
         <Text style={styles.forgotPassword}>Mot de passe oublié ?</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity style={styles.button} onPress={handleLogin} >
         <Text style={styles.buttonText}>Connexion</Text>
       </TouchableOpacity>
 
